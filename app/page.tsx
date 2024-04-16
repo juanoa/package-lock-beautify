@@ -23,7 +23,7 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-4">
           {
             packageLock.dependencies.map((dependency) => (
-              <DependencyCard dependency={dependency} key={dependency.name} />
+              <DependencyCard dependency={dependency} key={dependency.name}/>
             ))
           }
         </div>
@@ -31,7 +31,15 @@ export default function Home() {
         <div className="grid grid-cols-3 gap-4">
           {
             packageLock.devDependencies.map((dependency) => (
-              <DependencyCard dependency={dependency} key={dependency.name} />
+              <DependencyCard dependency={dependency} key={dependency.name}/>
+            ))
+          }
+        </div>
+        <h3>Package</h3>
+        <div className="grid grid-cols-3 gap-4">
+          {
+            packageLock.packages.map((dependency) => (
+              <DependencyCard dependency={dependency} key={dependency.name} packageLock={packageLock}/>
             ))
           }
         </div>

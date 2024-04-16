@@ -7,4 +7,5 @@ export type PackageLock = {
   requires: boolean;
   dependencies: Array<Dependency>;
   devDependencies: Array<Dependency>;
+  packages: Array<Dependency>;
 }
