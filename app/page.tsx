@@ -4,6 +4,8 @@ import {PackageLock} from "@/app/types/PackageLock";
 import {mapTextToPackageLock} from "@/app/utils/map-text-to-package-lock";
 import {DependencyCard} from "@/app/components/dependencies/DependencyCard";
 import {PackageLockForm} from "@/app/components/package-lock-form";
+import {DependencyFullCard} from "@/app/components/dependencies/DependencyFullCard";
+import {groupDependenciesByName} from "@/app/utils/group-dependencies-by-name";
 
 export default function Home() {
   const [packageLock, setPackageLock] = useState<PackageLock>()
@@ -35,11 +37,11 @@ export default function Home() {
             ))
           }
         </div>
-        <h3>Package</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3>Packages</h3>
+        <div className="grid grid-cols-1d gap-4">
           {
-            packageLock.packages.map((dependency) => (
-              <DependencyCard dependency={dependency} key={dependency.name} packageLock={packageLock}/>
+            groupDependenciesByName(packageLock.packages).map((dependency) => (
+              <DependencyFullCard groupedDependencies={dependency} key={dependency.name} packageLock={packageLock}/>
             ))
           }
         </div>
