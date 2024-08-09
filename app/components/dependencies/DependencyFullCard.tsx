@@ -21,7 +21,7 @@ export const DependencyFullCard: FC<Props> = ({groupedDependencies, packageLock}
     || packageLock?.devDependencies.find((dep) => dep.name === dependencyLevelOne.name)
 
   return (
-    <div className={`bg-white shadow-lg rounded-lg p-4 ${isInstalledByUser ? "border-2 border-green-500" : ""}`}>
+    <div className={`bg-white shadow-lg rounded-lg p-4 ${isInstalledByUser ? "border-2 border-purple-500" : ""}`}>
       <h2 className="text-xl font-semibold">{dependencyLevelOne.name} <span className="text-gray-500 text-sm">@{dependencyLevelOne.version}</span></h2>
       <div className="grid grid-cols-3 gap-4 mt-3">
         {
