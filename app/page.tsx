@@ -17,12 +17,13 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-4 w-2/3 m-auto min-h-screen">
-      <h1 className="text-3xl font-semibold"><code>{packageLock.name}</code> package beautified</h1>
-      <ProjectVersion version={packageLock.version} />
-      <div className="flex flex-col gap-4 justify-centerd">
-        <h2>Project</h2>
-        <h3>Dependencies</h3>
+    <div className="flex flex-col gap-4 w-2/3 m-auto min-h-screen mt-20">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-semibold"><code className="underline">{packageLock.name}</code> package beautified</h1>
+        <ProjectVersion version={packageLock.version} />
+      </div>
+      <div className="flex flex-col gap-6 justify-centerd">
+        <h2 className="text-2xl font-bold mt-10">🚀 Dependencies</h2>
         <div className="grid grid-cols-3 gap-4">
           {
             packageLock.dependencies.map((dependency) => (
@@ -30,7 +31,7 @@ export default function Home() {
             ))
           }
         </div>
-        <h3>Dev dependencies</h3>
+        <h2 className="text-2xl font-bold mt-10">🛠️ Dev dependencies</h2>
         <div className="grid grid-cols-3 gap-4">
           {
             packageLock.devDependencies.map((dependency) => (
@@ -38,7 +39,7 @@ export default function Home() {
             ))
           }
         </div>
-        <h3>Packages</h3>
+        <h2 className="text-2xl font-bold mt-10">📦 Packages</h2>
         <div className="grid grid-cols-1d gap-4">
           {
             groupDependenciesByName(packageLock.packages).map((dependency) => (
