@@ -5,7 +5,8 @@ export type GroupedDependencies = {
     dependencies: Array<Dependency>;
 }
 
-export const groupDependenciesByName = (dependencies: Array<Dependency>): Array<GroupedDependencies> => {
+export const groupDependenciesByName =
+  (dependencies: Array<Dependency>, sorting: "alphabetically" | "dependencies"): Array<GroupedDependencies> => {
     const groupedDependencies: Array<GroupedDependencies> = [];
     dependencies.forEach((dependency) => {
         const existingGroup = groupedDependencies.find((group) => group.name === dependency.name);
@@ -15,5 +16,9 @@ export const groupDependenciesByName = (dependencies: Array<Dependency>): Array<
             groupedDependencies.push({name: dependency.name, dependencies: [dependency]});
         }
     });
-    return groupedDependencies;
+
+    if (sorting === "alphabetically") {
+        return groupedDependencies.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return groupedDependencies.sort((a, b) => b.dependencies.length - a.dependencies.length);
 }

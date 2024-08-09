@@ -10,6 +10,7 @@ import {ProjectVersion} from "@/app/components/project-version/ProjectVersion";
 
 export default function Home() {
   const [packageLock, setPackageLock] = useState<PackageLock>()
+  const [sortingCriteria, setSortingCriteria] = useState<"alphabetically" | "dependencies">("alphabetically")
 
 
   if (!packageLock) {
@@ -39,10 +40,26 @@ export default function Home() {
             ))
           }
         </div>
-        <h2 className="text-2xl font-bold mt-10">📦 Packages</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold mt-10">📦 Packages</h2>
+          <div className="flex gap-4">
+            <button
+              className={`text-sm decoration-purple-500 decoration-4 underline-offset-4 ${sortingCriteria === "alphabetically" && "underline"}`}
+              onClick={() => setSortingCriteria("alphabetically")}
+            >
+              Alphabetically
+            </button>
+            <button
+              className={`text-sm decoration-purple-500 decoration-4 underline-offset-4 ${sortingCriteria === "dependencies" && "underline"}`}
+              onClick={() => setSortingCriteria("dependencies")}
+            >
+              Number of dependencies
+            </button>
+          </div>
+        </div>
         <div className="grid grid-cols-1d gap-4">
           {
-            groupDependenciesByName(packageLock.packages).map((dependency) => (
+            groupDependenciesByName(packageLock.packages, sortingCriteria).map((dependency) => (
               <DependencyFullCard groupedDependencies={dependency} key={dependency.name} packageLock={packageLock}/>
             ))
           }
