@@ -6,12 +6,12 @@ interface Props {
   dependency: Dependency;
 }
 
-export const DependencyCard: FC<Props> = ({dependency}) => {
+export const SubDependencyCard: FC<Props> = ({dependency}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="bg-white shadow-lg rounded-lg p-4 border-2 border-purple-500 relative"
+      className="bg-gray-100 p-2 rounded-lg relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -20,8 +20,9 @@ export const DependencyCard: FC<Props> = ({dependency}) => {
           <GoToNpmIcon dependency={dependency} />
         </div>
       )}
-      <h2 className="text-xl font-semibold">{dependency.name}</h2>
-      <p className="text-gray-500">{dependency.version}</p>
+      <h3 className="text-lg font-semibold">{dependency.name} <span
+        className="text-gray-500 text-sm">@{dependency.version}</span></h3>
+      <p className="text-gray-500">level: {dependency.level}</p>
     </div>
   );
 }
