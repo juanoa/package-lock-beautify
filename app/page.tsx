@@ -6,6 +6,7 @@ import {DependencyCard} from "@/app/components/dependencies/DependencyCard";
 import {PackageLockForm} from "@/app/components/package-lock-form";
 import {DependencyFullCard} from "@/app/components/dependencies/DependencyFullCard";
 import {groupDependenciesByName} from "@/app/utils/group-dependencies-by-name";
+import {ProjectVersion} from "@/app/components/project-version/ProjectVersion";
 
 export default function Home() {
   const [packageLock, setPackageLock] = useState<PackageLock>()
@@ -18,7 +19,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4 w-2/3 m-auto min-h-screen">
       <h1 className="text-3xl font-semibold"><code>{packageLock.name}</code> package beautified</h1>
-      <pre className="text-xs">{packageLock.version}</pre>
+      <ProjectVersion version={packageLock.version} />
       <div className="flex flex-col gap-4 justify-centerd">
         <h2>Project</h2>
         <h3>Dependencies</h3>
